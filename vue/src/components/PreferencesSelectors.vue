@@ -121,6 +121,7 @@ export default {
             ...this.genrePreferences,
             wants_action: value
           });
+          this.$emit("checkboxToggled");
         }
       },
       isAdventureChecked: {
@@ -132,6 +133,7 @@ export default {
             ...this.genrePreferences,
             wants_adventure: value
           });
+          this.$emit("checkboxToggled");
         }
       },
       isComedyChecked: {
@@ -143,6 +145,7 @@ export default {
             ...this.genrePreferences,
             wants_comedy: value
           });
+          this.$emit("checkboxToggled");
         }
       },
       isDramaChecked: {
@@ -154,6 +157,7 @@ export default {
             ...this.genrePreferences,
             wants_drama: value
           });
+          this.$emit("checkboxToggled");
         }
       },
       isFamilyChecked: {
@@ -165,6 +169,7 @@ export default {
             ...this.genrePreferences,
             wants_family: value
           });
+          this.$emit("checkboxToggled");
         }
       },
       isHorrorChecked: {
@@ -176,6 +181,7 @@ export default {
             ...this.genrePreferences,
             wants_horror: value
           });
+          this.$emit("checkboxToggled");
         }
       },
       isRomanceChecked: {
@@ -187,6 +193,7 @@ export default {
             ...this.genrePreferences,
             wants_romance: value
           });
+          this.$emit("checkboxToggled");
         }
       },
       isScifiChecked: {
@@ -198,6 +205,7 @@ export default {
             ...this.genrePreferences,
             wants_scifi: value
           });
+          this.$emit("checkboxToggled");
         }
       },
       isThrillerChecked: {
@@ -209,9 +217,25 @@ export default {
             ...this.genrePreferences,
             wants_thriller: value
           });
+          this.$emit("checkboxToggled");
         }
       }
-    }
+    },
+    // methods: {
+    //   resetGenrePreferences(){
+    //     this.$emit("update:genrePreferences", {
+    //       wants_action: false,
+    //       wants_adventure: false,
+    //       wants_comedy: false,
+    //       wants_drama: false,
+    //       wants_horror: false,
+    //       wants_romance: false,
+    //       wants_scifi: false,
+    //       wants_thriller: false,
+    //       wants_family: false
+    //     });
+    //   }
+    // },
 };
 
 </script>
