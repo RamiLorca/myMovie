@@ -4,7 +4,7 @@
         <img src=myMoviesLogo.png id="mainLogo">
         <v-btn text class="ml-2" to="/">Movies</v-btn>
         <v-btn text class="ml-2" to="/genres">Genres</v-btn>
-        <v-btn text class="ml-2">WatchList</v-btn>
+        <v-btn text class="ml-2" to="/watchlist">WatchList</v-btn>
         <v-btn text class="ml-2">FAQ</v-btn>
         <v-spacer></v-spacer>
     </v-app-bar>

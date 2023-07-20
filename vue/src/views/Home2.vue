@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%;">
     <MovieCarousel2 />
   </div>
 </template>
@@ -15,7 +15,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-</style>

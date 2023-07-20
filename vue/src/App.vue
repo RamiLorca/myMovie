@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <nav-bar-2 />
-    <v-main>
+    <v-main >
       <router-view/>
     </v-main>
     <Footer/>
@@ -16,9 +16,11 @@ export default {
     NavBar2, 
     Footer },
   name: 'App',
-
+  mounted() {
+    document.title = "myMovies";
+  },
   data: () => ({
     //
   }),
-};
+  };
 </script>
