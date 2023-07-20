@@ -1,13 +1,7 @@
 <template>
   <div>
     <div class="selector-box">
-      <preferences-selectors :genre-preferences.sync="genrePreferences"/>
-      <div class="buttons">
-        <!-- <v-btn variant="tonal" id="Save" type="button" @click="savePreferences">Save</v-btn> -->
-        <!-- <button id="Save" type="button" @click="savePreferences">Save</button> -->
-        <!-- <button id="Reset" type="button">Reset</button> -->
-        <!-- <v-btn variant="tonal" id="Reset" type="button" @click="resetPreferences">Reset</v-btn> -->
-      </div>
+      <preferences-selectors :genre-preferences.sync="genrePreferences" @checkboxToggled="onCheckBoxToggled"/>
     </div>
   </div>
 </template>
@@ -25,12 +19,13 @@ export default {
             genrePreferences: {},
         }
     },
-    created() {
-        UserService.getUserPreferences(1)
-        .then(
-            (response) => {
-                this.genrePreferences = response.data;
-        })
+    async created() {
+        try {
+            const response = await UserService.getUserPreferences(1);
+            this.genrePreferences = response.data;
+        } catch (error) {
+            console.error('Error fetching genre preferences:', error);
+        }
     },
     methods: {
         onCheckBoxToggled(){
@@ -64,7 +59,10 @@ export default {
                 UserService.updatePreferences(requestBody)
                     .then((response) => {
                         console.log(response.data);
-                    });
+                    })
+                    .catch((error) => {
+                        console.error('Error updating genre preferences:', error);
+                });
             } else {
                 const requestBody = {
                     user_id: 1,
@@ -81,23 +79,12 @@ export default {
                 UserService.updatePreferences(requestBody)
                     .then((response) => {
                         console.log(response.data);
+                    })
+                    .catch((error) => {
+                        console.error('Error updating genre preferences:', error);
                     });
-                }
-            },
-        // resetPreferences() {
-        //     this.genrePreferences = {
-        //         wants_action: false,
-        //         wants_adventure: false,
-        //         wants_comedy: false,
-        //         wants_drama: false,
-        //         wants_horror: false,
-        //         wants_romance: false,
-        //         wants_scifi: false,
-        //         wants_thriller: false,
-        //         wants_family: false
-        //     };
-        //     this.savePreferences();
-        // }
+            }
+        },
     },
     watch: {
         genrePreferences: {

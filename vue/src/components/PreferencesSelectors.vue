@@ -1,108 +1,18 @@
 <template>
-  
-  <div class="selectors">
-        
-    <label class="checkbox-container" for="action">
-      <input type="checkbox" name="action" id="action" v-model="isActionChecked" style="display: none;"/>
-      <div class="checkbox-square" :class="{ 'checked-image1': isActionChecked, 'checked-image2': !isActionChecked }">
+
+  <div class="selectors">        
+    <label v-for="genre in genres" :key="genre.name" class="checkbox-container" :for="genre.name">
+      <input type="checkbox" :name="genre.name" :id="genre.name" :checked="isChecked(genre.name)" @change="onCheckboxChange(genre.name)" style="display: none;"/>
+      <div class="checkbox-square" :class="{ 'checked-image1': isChecked(genre.name), 'checked-image2': !isChecked(genre.name) }">
         <div class="checkbox-image">
-          <img v-if="isActionChecked" src="/action-white.svg" alt="action" style="object-fit: contain; width: 100%; height: 100%;"/>
-          <img v-else src="/action-black.svg" alt="action2" style="object-fit: contain; width: 100%; height: 100%;"/>
+          <img v-if="isChecked(genre.name)" :src="genre.imageChecked" :alt="genre.name" style="object-fit: contain; width: 100%; height: 100%;"/>
+          <img v-else :src="genre.imageUnchecked" :alt="genre.name + '2'" style="object-fit: contain; width: 100%; height: 100%;"/>
         </div>
       </div>
-      <label class="movie-label custom-text" for="action">Action</label>
+      <label class="movie-label custom-text" :for="genre.name">{{ genre.label }}</label>
     </label>
-
-    <label class="checkbox-container" for="adventure">
-      <input type="checkbox" name="adventure" id="adventure" v-model="isAdventureChecked" style="display: none;"/>
-      <div class="checkbox-square" :class="{ 'checked-image1': isAdventureChecked, 'checked-image2': !isAdventureChecked }">
-        <div class="checkbox-image">
-          <img v-if="isAdventureChecked" src="/adventure-white.svg" alt="adventure" style="object-fit: contain; width: 100%; height: 100%;"/>
-          <img v-else src="/adventure-grey.svg" alt="adventure2" style="object-fit: contain; width: 100%; height: 100%;"/>
-        </div>
-      </div>
-      <label class="movie-label custom-text" for="action">Adventure</label>
-    </label>
-
-    <label class="checkbox-container" for="comedy">
-      <input type="checkbox" name="comedy" id="comedy" v-model="isComedyChecked" style="display: none;"/>
-      <div class="checkbox-square" :class="{ 'checked-image1': isComedyChecked, 'checked-image2': !isComedyChecked }">
-        <div class="checkbox-image">
-          <img v-if="isComedyChecked" src="/comedy-white.svg" alt="comedy" style="object-fit: contain; width: 100%; height: 100%;"/>
-          <img v-else src="/comedy-grey.svg" alt="comedy2" style="object-fit: contain; width: 100%; height: 100%;"/>
-        </div>
-      </div>
-      <label class="movie-label custom-text" for="comedy">Comedy</label>
-    </label>
-
-    <label class="checkbox-container" for="drama">
-      <input type="checkbox" name="drama" id="drama" v-model="isDramaChecked" style="display: none;"/>
-      <div class="checkbox-square" :class="{ 'checked-image1': isDramaChecked, 'checked-image2': !isDramaChecked }">
-        <div class="checkbox-image">
-          <img v-if="isDramaChecked" src="/drama-white.svg" alt="drama" style="object-fit: contain; width: 100%; height: 100%;"/>
-          <img v-else src="/drama-grey.svg" alt="drama2" style="object-fit: contain; width: 100%; height: 100%;"/>
-        </div>
-      </div>
-      <label class="movie-label custom-text" for="drama">Drama</label>
-    </label>
-
-    <label class="checkbox-container" for="family">
-      <input type="checkbox" name="family" id="family" v-model="isFamilyChecked" style="display: none;"/>
-      <div class="checkbox-square" :class="{ 'checked-image1': isFamilyChecked, 'checked-image2': !isFamilyChecked }">
-        <div class="checkbox-image">
-          <img v-if="isFamilyChecked" src="/family-white.svg" alt="family" style="object-fit: contain; width: 100%; height: 100%;"/>
-          <img v-else src="/family-grey.svg" alt="family2" style="object-fit: contain; width: 100%; height: 100%;"/>
-        </div>
-      </div>
-      <label class="movie-label custom-text" for="family">Family</label>
-    </label>
-
-    <label class="checkbox-container" for="horror">
-      <input type="checkbox" name="horror" id="horror" v-model="isHorrorChecked" style="display: none;"/>
-      <div class="checkbox-square" :class="{ 'checked-image1': isHorrorChecked, 'checked-image2': !isHorrorChecked }">
-        <div class="checkbox-image">
-          <img v-if="isHorrorChecked" src="/horror-white.svg" alt="horror" style="object-fit: contain; width: 100%; height: 100%;"/>
-          <img v-else src="/horror-grey.svg" alt="horror2" style="object-fit: contain; width: 100%; height: 100%;"/>
-        </div>
-      </div>
-      <label class="movie-label custom-text" for="horror">Horror</label>
-    </label>
-
-    <label class="checkbox-container" for="romance">
-      <input type="checkbox" name="romance" id="romance" v-model="isRomanceChecked" style="display: none;"/>
-      <div class="checkbox-square" :class="{ 'checked-image1': isRomanceChecked, 'checked-image2': !isRomanceChecked }">
-        <div class="checkbox-image">
-          <img v-if="isRomanceChecked" src="/romance-white.svg" alt="romance" style="object-fit: contain; width: 100%; height: 100%;"/>
-          <img v-else src="/romance-grey.svg" alt="romance2" style="object-fit: contain; width: 100%; height: 100%;"/>
-        </div>
-      </div>
-      <label class="movie-label custom-text" for="romance">Romance</label>
-    </label>
-
-    <label class="checkbox-container" for="sci-fi">
-      <input type="checkbox" ame="sci-fi" id="sci-fi" v-model="isScifiChecked" style="display: none;"/>
-      <div class="checkbox-square" :class="{ 'checked-image1': isScifiChecked, 'checked-image2': !isScifiChecked }">
-        <div class="checkbox-image">
-          <img v-if="isScifiChecked" src="/scifi-white.svg" alt="sci-fi" style="object-fit: contain; width: 100%; height: 100%;"/>
-          <img v-else src="/scifi-grey.svg" alt="sci-fi2" style="object-fit: contain; width: 100%; height: 100%;"/>
-        </div>
-      </div>
-      <label class="movie-label custom-text" for="sci-fi">Sci-Fi</label>
-    </label>
-
-    <label class="checkbox-container" for="thriller">
-      <input type="checkbox" name="thriller" id="thriller" v-model="isThrillerChecked" style="display: none;"/>
-      <div class="checkbox-square" :class="{ 'checked-image1': isThrillerChecked, 'checked-image2': !isThrillerChecked }">
-        <div class="checkbox-image">
-          <img v-if="isThrillerChecked" src="/thriller-white.svg" alt="thriller" style="object-fit: contain; width: 100%; height: 100%;"/>
-          <img v-else src="/thriller-grey.svg" alt="thriller2" style="object-fit: contain; width: 100%; height: 100%;"/>
-        </div>
-      </div>
-      <label class="movie-label custom-text" for="thriller">Thriller</label>
-    </label>
-
   </div>
-
+  
 </template>
 
 <script>
@@ -111,131 +21,78 @@ export default {
     props: {
       genrePreferences: Object,
     },
-    computed: {
-      isActionChecked: {
-        get() {
-          return this.genrePreferences.wants_action;
-        },
-        set(value) {
-          this.$emit("update:genrePreferences", {
-            ...this.genrePreferences,
-            wants_action: value
-          });
-          this.$emit("checkboxToggled");
-        }
-      },
-      isAdventureChecked: {
-        get() {
-          return this.genrePreferences.wants_adventure;
-        },
-        set(value) {
-          this.$emit("update:genrePreferences", {
-            ...this.genrePreferences,
-            wants_adventure: value
-          });
-          this.$emit("checkboxToggled");
-        }
-      },
-      isComedyChecked: {
-        get() {
-          return this.genrePreferences.wants_comedy;
-        },
-        set(value) {
-          this.$emit("update:genrePreferences", {
-            ...this.genrePreferences,
-            wants_comedy: value
-          });
-          this.$emit("checkboxToggled");
-        }
-      },
-      isDramaChecked: {
-        get() {
-          return this.genrePreferences.wants_drama;
-        },
-        set(value) {
-          this.$emit("update:genrePreferences", {
-            ...this.genrePreferences,
-            wants_drama: value
-          });
-          this.$emit("checkboxToggled");
-        }
-      },
-      isFamilyChecked: {
-        get() {
-          return this.genrePreferences.wants_family;
-        },
-        set(value) {
-          this.$emit("update:genrePreferences", {
-            ...this.genrePreferences,
-            wants_family: value
-          });
-          this.$emit("checkboxToggled");
-        }
-      },
-      isHorrorChecked: {
-        get() {
-          return this.genrePreferences.wants_horror;
-        },
-        set(value) {
-          this.$emit("update:genrePreferences", {
-            ...this.genrePreferences,
-            wants_horror: value
-          });
-          this.$emit("checkboxToggled");
-        }
-      },
-      isRomanceChecked: {
-        get() {
-          return this.genrePreferences.wants_romance;
-        },
-        set(value) {
-          this.$emit("update:genrePreferences", {
-            ...this.genrePreferences,
-            wants_romance: value
-          });
-          this.$emit("checkboxToggled");
-        }
-      },
-      isScifiChecked: {
-        get() {
-          return this.genrePreferences.wants_scifi;
-        },
-        set(value) {
-          this.$emit("update:genrePreferences", {
-            ...this.genrePreferences,
-            wants_scifi: value
-          });
-          this.$emit("checkboxToggled");
-        }
-      },
-      isThrillerChecked: {
-        get() {
-          return this.genrePreferences.wants_thriller;
-        },
-        set(value) {
-          this.$emit("update:genrePreferences", {
-            ...this.genrePreferences,
-            wants_thriller: value
-          });
-          this.$emit("checkboxToggled");
-        }
-      }
+    data() {
+      return {
+        genres: [
+          {
+            name: "wants_action",
+            label: "Action",
+            imageChecked: "/action-white.svg",
+            imageUnchecked: "/action-black.svg",
+          },
+          {
+            name: "wants_adventure",
+            label: "Adventure",
+            imageChecked: "/adventure-white.svg",
+            imageUnchecked: "/adventure-grey.svg",
+          },
+          {
+            name: "wants_comedy",
+            label: "Comedy",
+            imageChecked: "/comedy-white.svg",
+            imageUnchecked: "/comedy-grey.svg",
+          },
+          {
+            name: "wants_drama",
+            label: "Drama",
+            imageChecked: "/drama-white.svg",
+            imageUnchecked: "/drama-grey.svg",
+          },
+          {
+            name: "wants_family",
+            label: "Family",
+            imageChecked: "/family-white.svg",
+            imageUnchecked: "/family-grey.svg",
+          },
+          {
+            name: "wants_horror",
+            label: "Horror",
+            imageChecked: "/horror-white.svg",
+            imageUnchecked: "/horror-grey.svg",
+          },
+          {
+            name: "wants_romance",
+            label: "Romance",
+            imageChecked: "/romance-white.svg",
+            imageUnchecked: "/romance-grey.svg",
+          },
+          {
+            name: "wants_scifi",
+            label: "Sci-Fi",
+            imageChecked: "/scifi-white.svg",
+            imageUnchecked: "/scifi-grey.svg",
+          },
+          {
+            name: "wants_thriller",
+            label: "Thriller",
+            imageChecked: "/thriller-white.svg",
+            imageUnchecked: "/thriller-grey.svg",
+          },
+        ],
+      };
     },
-    // methods: {
-    //   resetGenrePreferences(){
-    //     this.$emit("update:genrePreferences", {
-    //       wants_action: false,
-    //       wants_adventure: false,
-    //       wants_comedy: false,
-    //       wants_drama: false,
-    //       wants_horror: false,
-    //       wants_romance: false,
-    //       wants_scifi: false,
-    //       wants_thriller: false,
-    //       wants_family: false
-    //     });
-    //   }
-    // },
+    methods: {
+      isChecked(genreName) {
+      return this.genrePreferences && this.genrePreferences[genreName];
+    },
+    onCheckboxChange(genreName) {
+      this.$emit("update:genrePreferences", {
+        ...this.genrePreferences,
+        [genreName]: !this.isChecked(genreName),
+      });
+      this.$emit("checkboxToggled");
+    },
+  },
 };
 
 </script>
