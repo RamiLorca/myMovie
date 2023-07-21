@@ -32,14 +32,12 @@ public class UserController {
 //        }
 //    }
 
-    //temporary controller method used to get details from user "user" (the standard test user in database)
     @RequestMapping(path = "/preferences/{userId}", method = RequestMethod.GET)
     public User getUserById(@PathVariable("userId") int userId) {
         User user = userDao.getUserById(userId);
         return user;
     }
-
-    //temporary controller method to set preference details for "user"
+    
     @RequestMapping(path = "/preferences/update", method = RequestMethod.PUT)
     public void updatePreferences(@RequestBody User user) {
 

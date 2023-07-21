@@ -25,6 +25,9 @@ public class Movie {
     @JsonProperty("img_url")
     private String imageURL;
 
+    @JsonProperty("movie_overview")
+    private String movieOverview;
+
     public Movie() {
     }
 
@@ -33,18 +36,22 @@ public class Movie {
         this.movieGenre = movieGenre;
     }
 
-    public Movie(String movieId, String movieTitle, String movieGenre, String imageURL) {
+    //added overview
+    public Movie(String movieId, String movieTitle, String movieGenre, String movieOverview, String imageURL) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
         this.movieGenre = movieGenre;
+        this.movieOverview = movieOverview;
         this.imageURL = imageURL;
     }
 
-    public Movie(String movieId, String movieTitle, String movieGenre, boolean wantToWatch,
+        //added overview
+    public Movie(String movieId, String movieTitle, String movieGenre, String movieOverview, boolean wantToWatch,
                  boolean alreadyWatched, int movieRating, String imageURL) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
         this.movieGenre = movieGenre;
+        this.movieOverview = movieOverview;
         this.wantToWatch = wantToWatch;
         this.alreadyWatched = alreadyWatched;
         this.movieRating = movieRating;
@@ -77,6 +84,7 @@ public class Movie {
                 "movieId='" + movieId + '\'' +
                 ", movieTitle='" + movieTitle + '\'' +
                 ", movieGenre='" + movieGenre + '\'' +
+                ", movieOverview=" + movieOverview + '\'' +
                 ", wantToWatch=" + wantToWatch +
                 ", alreadyWatched=" + alreadyWatched +
                 ", movieRating=" + movieRating +
@@ -120,4 +128,11 @@ public class Movie {
         this.imageURL = imageURL;
     }
 
+    public String getMovieOverview() {
+        return movieOverview;
+    }
+
+    public void setMovieOverview(String movieOverview) {
+        this.movieOverview = movieOverview;
+    }
 }

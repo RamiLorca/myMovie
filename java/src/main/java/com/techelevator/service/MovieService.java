@@ -125,11 +125,13 @@ public class MovieService {
                 String title = results.path(i).path("title").asText();
                 String movieId = results.path(i).path("id").asText();
                 String imgURL = results.path(i).path("poster_path").asText();
+                String overview = results.path(i).path("overview").asText();
 
                 Movie movie = new Movie();
                 movie.setMovieTitle(title);
                 movie.setMovieId(movieId);
                 movie.setImageURL("https://image.tmdb.org/t/p/original" + imgURL);
+                movie.setMovieOverview(overview);
 
                 movies[i] = movie;
             }
@@ -139,6 +141,56 @@ public class MovieService {
         }
         return null;
     }
+
+    //before adding summary
+//    public Movie[] getMoviesByGenre(String movieGenre) {
+//
+//        int page = randomPageNumber(50, 1);
+//        int perPage = 20;
+//
+//        int genreId = convertGenreNameToId(movieGenre);
+//        String url = buildRequestUrl(genreId, page, perPage);
+//        HttpHeaders headers = createHttpHeaders();
+//        HttpEntity<?> entity = new HttpEntity<>(headers);
+//
+//        ResponseEntity<String> response;
+//
+//        response = restTemplate.exchange(
+//                url,
+//                HttpMethod.GET,
+//                entity,
+//                String.class
+//        );
+//
+//        System.out.println(response);
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        try {
+//            JsonNode jsonNode = objectMapper.readTree(response.getBody());
+//            JsonNode results = jsonNode.path("results");
+//
+//            Movie[] movies = new Movie[results.size()];
+//
+//            for(int i=0; i < results.size(); i++) {
+//                results.path(i);
+//
+//                String title = results.path(i).path("title").asText();
+//                String movieId = results.path(i).path("id").asText();
+//                String imgURL = results.path(i).path("poster_path").asText();
+//
+//                Movie movie = new Movie();
+//                movie.setMovieTitle(title);
+//                movie.setMovieId(movieId);
+//                movie.setImageURL("https://image.tmdb.org/t/p/original" + imgURL);
+//
+//                movies[i] = movie;
+//            }
+//            return movies;
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public Movie[] getMoviesByPreferences(String[] preferences) {
 

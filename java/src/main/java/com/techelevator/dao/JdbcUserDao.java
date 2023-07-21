@@ -179,7 +179,6 @@ public class JdbcUserDao implements UserDao {
         user.setId(results.getInt("user_id"));
         user.setUsername(results.getString("username"));
         user.setPassword(results.getString("password_hash"));
-
         user.setWantsAction(results.getBoolean("wants_action"));
         user.setWantsAdventure(results.getBoolean("wants_adventure"));
         user.setWantsComedy(results.getBoolean("wants_comedy"));
@@ -189,7 +188,6 @@ public class JdbcUserDao implements UserDao {
         user.setWantsScifi(results.getBoolean("wants_scifi"));
         user.setWantsThriller(results.getBoolean("wants_thriller"));
         user.setWantsFamily(results.getBoolean("wants_family"));
-
         user.setAuthorities(Objects.requireNonNull(results.getString("role")));
         user.setActivated(true);
         return user;

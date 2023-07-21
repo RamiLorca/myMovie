@@ -24,6 +24,7 @@ CREATE TABLE movies (
 	movie_id varchar(50) NOT NULL,
 	movie_title varchar(50) NOT NULL,
 	movie_genre int NULL,
+	movie_overview varchar(500) NULL,
 	already_watched boolean NULL,
 	movie_rating int NULL,
 	want_to_watch boolean NULL,

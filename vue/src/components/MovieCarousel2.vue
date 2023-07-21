@@ -13,18 +13,8 @@
                     <img class="movie-poster" :src="movie.img_url" />
                 </div>
                 <div class="title-and-summary">
-                    <h1 id="movie-title">{{ movie.movie_title }}</h1>
-                    <p class="movie-summary">  Lorem impsum lorem ipsum lorem ipsum lorem ipsum 
-                                            lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-                                            lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-                                            lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-                                            lorem ipsum lorem ipsum lorem ipsum Lorem impsum 
-                                            lorem ipsum lorem ipsum lorem ipsum <br>
-                                            lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-                                            lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-                                            lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-                                            lorem ipsum lorem ipsum lorem ipsum</p>
-
+                    <h1 id="movie-title" class="mt-5 grey--text text--darken-3">{{ movie.movie_title }}</h1>
+                    <p class="mt-5 grey--text text--darken-3 subheader">{{ movie.movie_overview }}</p>
                     <v-btn variant="tonal" @click="wantToWatch">Add to Watchlist</v-btn>
                 </div>
             </div>
@@ -71,7 +61,6 @@ export default {
             console.log("click arrow")
             this.current = newIndex;
             console.log(this.current)
-
         },
     }
 };
@@ -94,15 +83,18 @@ export default {
     .movie-info {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         height: 100%;
+        width: 80%;
+        margin: auto;
+        gap: 10px;
     }
 
     .movie-info div {
         height: 80%;
         width: auto;
-        margin: auto auto auto 10%;
+        margin: auto;
         max-width: 450px;
     }
 

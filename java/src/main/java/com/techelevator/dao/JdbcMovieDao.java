@@ -25,16 +25,17 @@ public class JdbcMovieDao implements MovieDao {
         String movieId = movie.getMovieId();
         String movieTitle = movie.getMovieTitle();
         String movieGenre = movie.getMovieGenre();
+        String movieOverview = movie.getMovieOverview();
         boolean isAlreadyWatched = movie.isAlreadyWatched();
         int movieRating = movie.getMovieRating();
         boolean isWantToWatch = movie.isWantToWatch();
         String imageURL = movie.getImageURL();
 
-        String addMovieSql = "INSERT INTO movies (movie_id, movie_title, movie_genre, already_watched, movie_rating, want_to_watch, img_url) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String addMovieSql = "INSERT INTO movies (movie_id, movie_title, movie_genre, movie_overview, already_watched, movie_rating, want_to_watch, img_url) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
-            template.update(addMovieSql, movieId, movieTitle, movieGenre, isAlreadyWatched, movieRating, isWantToWatch, imageURL);
+            template.update(addMovieSql, movieId, movieTitle, movieGenre, movieOverview, isAlreadyWatched, movieRating, isWantToWatch, imageURL);
             return true;
         } catch (DataAccessException e) {
             String errorMessage = "Failed to add movie to database: " + e.getMessage();
@@ -84,7 +85,7 @@ public class JdbcMovieDao implements MovieDao {
 
     @Override
     public List<Movie> getWantToWatchMovies() {
-        String getWantToWatchMoviesSql = "SELECT movie_id, movie_title, movie_genre, already_watched, movie_rating, want_to_watch, img_url " +
+        String getWantToWatchMoviesSql = "SELECT movie_id, movie_title, movie_genre, movie_overview, already_watched, movie_rating, want_to_watch, img_url " +
                 "FROM movies WHERE want_to_watch = true;";
 
         List<Movie> wantToWatchMovies = new ArrayList<>();
@@ -107,6 +108,7 @@ public class JdbcMovieDao implements MovieDao {
         movie.setMovieId(result.getString("movie_id"));
         movie.setMovieTitle(result.getString("movie_title"));
         movie.setMovieGenre(result.getString("movie_genre"));
+        movie.setMovieOverview(result.getString("movie_overview"));
         movie.setAlreadyWatched(result.getBoolean("already_watched"));
         movie.setMovieRating(result.getInt("movie_rating"));
         movie.setWantToWatch(result.getBoolean("want_to_watch"));
