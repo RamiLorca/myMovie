@@ -5,13 +5,13 @@
         <v-container fluid>
             <v-row>
                 <v-col cols="12" sm="3" v-for="movie in wantToWatchMovies" :key="movie.movie_id"  >
-                    <v-card :elevation="hover ? 16:2" :class="{'on-hover' : hover}">
+                    <v-card>
                         <router-link :to="`/movie/${movie.movie_id}`">
                             <v-img :src="movie.img_url" alt="" class=""></v-img>
                         </router-link>
                         <v-card-title class="subtitle-2">{{movie.movie_title}}</v-card-title>
                         <v-card-text>
-                        <v-row align="center" class="mx-0">
+                        <v-row align-self="center" class="mx-0">
                             <!-- <v-rating :value="movie.vote_average / 2" color="amber" dense half-increments readonly size="14">
                             </v-rating> -->
                             <!-- <div class="grey--text ml-4">

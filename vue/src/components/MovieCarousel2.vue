@@ -1,7 +1,7 @@
 <template>
   <div class="custom-carousel-container">
 
-    <v-carousel hide-delimiters show-arrows class="custom-carousel" height="auto">
+    <v-carousel ref="customCarousel" hide-delimiters show-arrows class="custom-carousel" height="auto" @change="navigationHandler">
         <v-carousel-item
             class="custom-carousel-item"
             v-for="(movie,i) in this.movies"
@@ -24,7 +24,8 @@
                                             lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
                                             lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
                                             lorem ipsum lorem ipsum lorem ipsum</p>
-                    <v-btn text class="ml-2">Add to Watchlist</v-btn>
+
+                    <v-btn variant="tonal" @click="wantToWatch">Add to Watchlist</v-btn>
                 </div>
             </div>
 
@@ -56,6 +57,23 @@ export default {
             }
         });
     },
+    methods: {
+        wantToWatch(){
+            this.movies[this.current].want_to_watch = true;
+            MovieService.addMovie(this.movies[this.current])
+            .then((response) => {
+                if(response.status == 200) {
+                    console.log("Movie Added to WatchList")
+                }
+            });
+        },
+        navigationHandler(newIndex) {
+            console.log("click arrow")
+            this.current = newIndex;
+            console.log(this.current)
+
+        },
+    }
 };
 </script>
 

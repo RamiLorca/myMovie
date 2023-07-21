@@ -80,7 +80,6 @@ public class MovieController {
         }
     }
 
-    //method to get Movie list for all of "user" genres
     @RequestMapping(value = "/movies/preferences", method = RequestMethod.GET)
     public Movie[] getMoviesByPreferences() {
 
