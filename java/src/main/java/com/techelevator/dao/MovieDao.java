@@ -9,6 +9,8 @@ public interface MovieDao {
 
     public boolean addMovie(Movie movie);
 
+    public boolean deleteMovie(String movieId);
+
     public Movie getMovieById(String movieId);
 
     public List<Movie> getWatchedMovies(); // Add this method

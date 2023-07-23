@@ -5,6 +5,9 @@ export default {
     addMovie(movie) {
         return axios.post('/movies/add', movie);
     },
+    deleteMovie(id) {
+        return axios.delete(`movies/delete/${id}`)
+    },
     getMoviesByPreferences() {
         return axios.get('/movies/preferences');
     },

@@ -8,6 +8,7 @@ import com.techelevator.model.User;
 import com.techelevator.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -43,20 +44,26 @@ public class MovieController {
 
     @RequestMapping(path = "/movies/add", method = RequestMethod.POST)
     public void addMovie(@RequestBody Movie movie) {
-
-        System.out.println("hello?");
         System.out.println(movie);
-
-        movieDao.addMovie(movie);
+        if(!movieDao.addMovie(movie)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Failed to initialize movie addition.");
+        }
     }
 
     @RequestMapping(path = "/movies/{movieId}", method = RequestMethod.GET)
-    public Movie getMovieById (@PathVariable String movieId) {
+    public Movie getMovieById(@PathVariable String movieId) {
         Movie movie = movieDao.getMovieById(movieId);
         if(movie == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found.");
         } else {
             return movie;
+        }
+    }
+
+    @RequestMapping(path = "/movies/delete/{movieId}", method = RequestMethod.DELETE)
+    public void deleteMovie(@PathVariable String movieId) {
+        if(!movieDao.deleteMovie(movieId)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Failed to initialize movie deletion.");
         }
     }
 

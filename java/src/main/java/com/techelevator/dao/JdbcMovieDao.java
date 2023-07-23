@@ -45,6 +45,19 @@ public class JdbcMovieDao implements MovieDao {
     }
 
     @Override
+    public boolean deleteMovie(String movieId) {
+        try {
+            String deleteMovieSQL = "DELETE FROM movies WHERE movie_id = ?";
+            int rowsAffected = template.update(deleteMovieSQL, movieId);
+            return rowsAffected > 0;
+        } catch (DataAccessException e) {
+            String errorMessage = "Failed to delete movie from database: " + e.getMessage();
+            System.out.println(errorMessage);
+            return false;
+        }
+    }
+
+    @Override
     public Movie getMovieById(String movieId) {
 
         String getMovieByIdSql = "SELECT movie_id, movie_title, movie_genre, already_watched, movie_rating, want_to_watch, img_url " +
@@ -62,7 +75,6 @@ public class JdbcMovieDao implements MovieDao {
         return null;
     }
 
-    //added these methods for the profile section of the page. 
     @Override
     public List<Movie> getWatchedMovies() {
         String getWatchedMoviesSql = "SELECT movie_id, movie_title, movie_genre, already_watched, movie_rating, want_to_watch, img_url " +

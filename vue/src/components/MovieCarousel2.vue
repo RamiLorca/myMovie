@@ -68,48 +68,48 @@ export default {
 
 <style scoped>
 
-    .custom-carousel-container {
-        height: 100% !important;
-    }
+.custom-carousel-container {
+    height: 100% !important;
+}
 
-    .custom-carousel {
-        height: 100% !important;
-    }
+.custom-carousel {
+    height: 100% !important;
+}
 
-    .custom-carousel-item {
-        height: 100% !important;
-    }
+.custom-carousel-item {
+    height: 100% !important;
+}
 
-    .movie-info {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 80%;
-        margin: auto;
-        gap: 10px;
-    }
+.movie-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    gap: 10px;
+}
 
-    .movie-info div {
-        height: 80%;
-        width: auto;
-        margin: auto;
-        max-width: 450px;
-    }
+.movie-info div {
+    height: 80%;
+    width: auto;
+    margin: auto;
+    max-width: 450px;
+}
 
-    .movie-info div img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 2% !important;
-        box-shadow: 0px 0px 10px .1px #9e9e9e; 
-    }
+.movie-info div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2% !important;
+    box-shadow: 0px 0px 10px .1px #9e9e9e; 
+}
 
-    .title-and-summary {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+.title-and-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 </style>

@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import store from '../store/index.js'
 import Home2 from '../views/Home2.vue'
 import Genres from '../views/Genres.vue'
-import WatchList from '../views/WatchList'
+import WatchList from '../views/WatchList.vue'
+import MovieCard from '../components/MovieCard.vue'
 
 Vue.use(Router)
 
@@ -31,6 +32,14 @@ const router = new Router({
       path: '/watchlist',
       name: 'WatchList',
       component: WatchList,
+      meta: {
+        requiresAuth: false
+        }
+    },
+    {
+      path: '/watchlist/:movieId',
+      name: 'MovieDetails',
+      component: MovieCard,
       meta: {
         requiresAuth: false
         }
