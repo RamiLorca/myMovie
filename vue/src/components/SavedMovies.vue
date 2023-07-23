@@ -2,7 +2,7 @@
 
     <div class="mx-3">
 
-        <h2 class="mt-2 grey--text">Saved Movies</h2>
+        <h2 class="mt-2 grey--text" style="margin-left: 10px;">Your Saved Movies</h2>
         <v-container fluid>
             <v-row>
                 <v-col cols="12" sm="3" v-for="movie in wantToWatchMovies" :key="movie.movie_id">
@@ -23,14 +23,18 @@
             </v-row>
         </v-container> 
 
-        <v-dialog v-model="showOverlay" persistent max-width="800">
-            <v-card class="movie-card-overlay">
-                <MovieCard v-if="selectedMovie" :movie="selectedMovie" @close="closeOverlay"/>
-                <v-card-actions>
-                    <v-btn @click="closeOverlay">Close</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <transition name="fade">
+            <v-dialog v-model="showOverlay" persistent max-width="800">
+                <v-card class="movie-card-overlay">
+                    <MovieCard v-if="selectedMovie" :movie="selectedMovie" @close="closeOverlay" @movieRemoved="onMovieRemoved"/>
+                    <v-card-actions>
+                        <v-btn icon @click="showOverlay = false">
+                            <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </transition>
 
     </div>
 
@@ -71,6 +75,10 @@ export default {
             this.selectedMovie = null;
             this.showOverlay = false;
         },
+        onMovieRemoved() {
+            this.showOverlay = false;
+            this.fetchWantToWatchMovies();
+        }
     }
 }
 
@@ -99,15 +107,28 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 90%;
+  max-width: 900px;
   max-height: 90%;
   overflow-y: auto;
 }
 
-.v-dialog__content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.v-card__actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.custom-dialog.v-dialog{
+    margin: 10px;
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 </style>
