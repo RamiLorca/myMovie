@@ -1,36 +1,46 @@
 <template>
+
   <div class="custom-carousel-container">
 
-    <v-carousel ref="customCarousel" hide-delimiters show-arrows class="custom-carousel" height="auto" @change="navigationHandler">
-        <v-carousel-item
-            class="custom-carousel-item"
-            v-for="(movie,i) in this.movies"
-            :key="i"
-            cover
-        >
-            <div class="movie-info">
-                <div class="img-box">
-                    <img class="movie-poster" :src="movie.img_url" />
+        <v-carousel v-if="!isLoading" ref="customCarousel" hide-delimiters show-arrows class="custom-carousel" height="auto" @change="navigationHandler">
+            <v-carousel-item
+                class="custom-carousel-item"
+                v-for="(movie,i) in this.movies"
+                :key="i"
+                cover
+            >
+                <div class="movie-info">
+                    <div class="img-box">
+                        <img class="movie-poster" :src="movie.img_url" />
+                    </div>
+                    <div class="title-and-summary">
+                        <h1 id="movie-title" class="mt-5 grey--text text--darken-3">{{ movie.movie_title }}</h1>
+                        <p class="mt-5 grey--text text--darken-3 subheader">{{ movie.movie_overview }}</p>
+                        <v-btn variant="tonal" @click="wantToWatch">Add to Watchlist</v-btn>
+                    </div>
                 </div>
-                <div class="title-and-summary">
-                    <h1 id="movie-title" class="mt-5 grey--text text--darken-3">{{ movie.movie_title }}</h1>
-                    <p class="mt-5 grey--text text--darken-3 subheader">{{ movie.movie_overview }}</p>
-                    <v-btn variant="tonal" @click="wantToWatch">Add to Watchlist</v-btn>
-                </div>
-            </div>
 
-        </v-carousel-item>
-    </v-carousel>
+            </v-carousel-item>
+        </v-carousel>
+
+        <pulse-loader v-if="isLoading" :loading="loading" :color="color" :margin="margin"></pulse-loader>
 
     </div> 
+
 </template>
 
 <script>
 import MovieService from '../services/MovieService.js';
+import PulseLoader from '../components/PulseLoader.vue';
+
 export default {
+    components: {
+        PulseLoader,
+    },
     data() {
         return {
             movies: [],
+            isLoading: true,
             current: 0,
             show: false,
         };
@@ -45,6 +55,7 @@ export default {
             if(response.data.length > 0){
                 this.movies = response.data;
             }
+            this.isLoading = false;
         });
     },
     methods: {
@@ -69,7 +80,11 @@ export default {
 <style scoped>
 
 .custom-carousel-container {
+    display: flex;
+    flex-direction: column;
     height: 100% !important;
+    justify-content: center;
+    align-items: center; 
 }
 
 .custom-carousel {
