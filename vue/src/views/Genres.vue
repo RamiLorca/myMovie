@@ -24,7 +24,7 @@ export default {
             const response = await UserService.getUserPreferences(1);
             this.genrePreferences = response.data;
         } catch (error) {
-            console.error('Error fetching genre preferences:', error);
+            ('Error fetching genre preferences:', error);
         }
     },
     methods: {
@@ -58,10 +58,10 @@ export default {
                 };
                 UserService.updatePreferences(requestBody)
                     .then((response) => {
-                        console.log(response.data);
+                        (response.data);
                     })
                     .catch((error) => {
-                        console.error('Error updating genre preferences:', error);
+                        ('Error updating genre preferences:', error);
                 });
             } else {
                 const requestBody = {
@@ -78,10 +78,10 @@ export default {
                 };
                 UserService.updatePreferences(requestBody)
                     .then((response) => {
-                        console.log(response.data);
+                        (response.data);
                     })
                     .catch((error) => {
-                        console.error('Error updating genre preferences:', error);
+                        ('Error updating genre preferences:', error);
                     });
             }
         },

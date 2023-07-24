@@ -64,14 +64,14 @@ export default {
             MovieService.addMovie(this.movies[this.current])
             .then((response) => {
                 if(response.status == 200) {
-                    console.log("Movie Added to WatchList")
+                    ("Movie Added to WatchList")
                 }
             });
         },
         navigationHandler(newIndex) {
-            console.log("click arrow")
+            ("click arrow")
             this.current = newIndex;
-            console.log(this.current)
+            (this.current)
         },
     }
 };

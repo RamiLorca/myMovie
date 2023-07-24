@@ -44,7 +44,7 @@ export default {
             MovieService.deleteMovie(this.movie.movie_id)
             .then((response) => {
                 if(response.status == 200) {
-                    console.log("Movie Deleted from WatchList");
+                    ("Movie Deleted from WatchList");
                     this.$emit('movieRemoved');
                 }
             });
