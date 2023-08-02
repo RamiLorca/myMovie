@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="mt-10 mb-0 ml-10 mr-10 grey--text" style="margin-left: 10px;">Your saved movies</h1>
     <saved-movies/>
   </div>
 </template>
@@ -14,6 +15,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+h1{
+  text-align: center;
+}
 
 </style>

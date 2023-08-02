@@ -27,56 +27,56 @@ export default {
           {
             name: "wants_action",
             label: "Action",
-            imageChecked: "/action-white.svg",
-            imageUnchecked: "/action-black.svg",
+            imageChecked: require('@/assets/action-white.svg'),
+            imageUnchecked: require('@/assets/action-black.svg'),
           },
           {
             name: "wants_adventure",
             label: "Adventure",
-            imageChecked: "/adventure-white.svg",
-            imageUnchecked: "/adventure-grey.svg",
+            imageChecked: require('@/assets/adventure-white.svg'),
+            imageUnchecked: require('@/assets/adventure-grey.svg'),
           },
           {
             name: "wants_comedy",
             label: "Comedy",
-            imageChecked: "/comedy-white.svg",
-            imageUnchecked: "/comedy-grey.svg",
+            imageChecked: require("@/assets/comedy-white.svg"),
+            imageUnchecked: require("@/assets/comedy-grey.svg"),
           },
           {
             name: "wants_drama",
             label: "Drama",
-            imageChecked: "/drama-white.svg",
-            imageUnchecked: "/drama-grey.svg",
+            imageChecked: require("@/assets/drama-white.svg"),
+            imageUnchecked: require("@/assets/drama-grey.svg"),
           },
           {
             name: "wants_family",
             label: "Family",
-            imageChecked: "/family-white.svg",
-            imageUnchecked: "/family-grey.svg",
+            imageChecked: require("@/assets/family-white.svg"),
+            imageUnchecked: require("@/assets/family-grey.svg"),
           },
           {
             name: "wants_horror",
             label: "Horror",
-            imageChecked: "/horror-white.svg",
-            imageUnchecked: "/horror-grey.svg",
+            imageChecked: require("@/assets/horror-white.svg"),
+            imageUnchecked: require("@/assets/horror-grey.svg"),
           },
           {
             name: "wants_romance",
             label: "Romance",
-            imageChecked: "/romance-white.svg",
-            imageUnchecked: "/romance-grey.svg",
+            imageChecked: require("@/assets/romance-white.svg"),
+            imageUnchecked: require("@/assets/romance-grey.svg"),
           },
           {
             name: "wants_scifi",
             label: "Sci-Fi",
-            imageChecked: "/scifi-white.svg",
-            imageUnchecked: "/scifi-grey.svg",
+            imageChecked: require("@/assets/scifi-white.svg"),
+            imageUnchecked: require("@/assets/scifi-grey.svg"),
           },
           {
             name: "wants_thriller",
             label: "Thriller",
-            imageChecked: "/thriller-white.svg",
-            imageUnchecked: "/thriller-grey.svg",
+            imageChecked: require("@/assets/thriller-white.svg"),
+            imageUnchecked: require("@/assets/thriller-grey.svg"),
           },
         ],
       };
@@ -104,11 +104,12 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center; 
   align-items: center; 
-  width: 50%;
+  max-width: 100%;
   font-size: 1.2rem;
   gap: 10px; 
-  margin: 3% auto;
+  margin: 0 auto;
   color: #7d7d7d;
+  align-self: center;
 }
 .selectors .custom-text {
   text-transform: uppercase;
@@ -123,6 +124,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  cursor: pointer;
 }
 
 .checkbox-square {
