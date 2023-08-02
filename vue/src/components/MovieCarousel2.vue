@@ -117,12 +117,15 @@ export default {
             break; 
         }
         } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("Error fetching movies:", error);
         retryCount++;
         if (retryCount < maxRetries) {
+            // eslint-disable-next-line no-console
             console.log(`Retrying (${retryCount}/${maxRetries})...`);
             await new Promise(resolve => setTimeout(resolve, 1000)); 
         } else {
+            // eslint-disable-next-line no-console
             console.error("Max retries reached. Cannot fetch movies.");
             break;
         }
@@ -141,6 +144,7 @@ export default {
                 this.buttonLoading = false;
                 }
             } catch (error) {
+                // eslint-disable-next-line no-console
                 console.error(error);
                 this.buttonLoading = false;
             }

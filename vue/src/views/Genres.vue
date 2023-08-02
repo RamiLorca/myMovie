@@ -26,7 +26,7 @@ export default {
             this.genrePreferences = response.data;
         } catch (error) {
                 // eslint-disable-next-line no-console
-                console.error('Error fetching genre preferences:', error);
+                // console.error('Error fetching genre preferences:', error);
         }
     },
     methods: {
