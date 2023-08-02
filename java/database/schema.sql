@@ -24,11 +24,13 @@ CREATE TABLE movies (
 	movie_id varchar(50) NOT NULL,
 	movie_title varchar(50) NOT NULL,
 	movie_genre int NULL,
-	movie_overview varchar(500) NULL,
+	movie_overview varchar(2000) NULL,
 	already_watched boolean NULL,
 	movie_rating int NULL,
 	want_to_watch boolean NULL,
 	img_url varchar(200),
+	vote_average NUMERIC(4,2) NULL,
+	release_date varchar(50) NULL,
 	CHECK (movie_rating BETWEEN 0 and 5),
 	CONSTRAINT PK_movie PRIMARY KEY (movie_id)
 );

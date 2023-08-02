@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import MovieService from '../services/MovieService'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     movies: [],
+    watchListMovies: [],
     currentMovieIndex: Math.floor(Math.random() * 20)
   },
   mutations: {
@@ -38,6 +40,9 @@ export default new Vuex.Store({
     SET_MOVIES(state, movies) {
       state.movies = movies;
     },
+    SET_WATCHLIST_MOVIES(state, movies) {
+      state.watchListMovies = movies;
+    },
     SET_CURRENT_MOVIE_INDEX(state, index) {
       state.currentMovieIndex = index;
     }
@@ -49,5 +54,16 @@ export default new Vuex.Store({
         commit('SET_MOVIES', response.data);
       });
     },
+    getWatchListMovies({ commit }) {
+      return MovieService.getWantToWatchMovies()
+      .then((response) => {
+        if(response.status === 200) {
+          commit('SET_WATCHLIST_MOVIES', response.data);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    }
   }
 });

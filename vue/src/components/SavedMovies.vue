@@ -1,16 +1,11 @@
 <template>
 
-    <div class="mx-3">
-
-        <h2 class="mt-2 grey--text" style="margin-left: 10px;">Your Saved Movies</h2>
+    <div class="main">
         <v-container fluid>
             <v-row>
                 <v-col cols="12" sm="3" v-for="movie in wantToWatchMovies" :key="movie.movie_id">
                     <v-hover v-slot="{hover}" open-delay="100">
                         <v-card :elevation="hover ? 16:2" :class="{'on-hover' : hover}" @click="showMovieDetails(movie)">
-                            <!-- <router-link :to="`/movie/${movie.movie_id}`">
-                                <v-img :src="movie.img_url" alt="" class="movie-image"></v-img>
-                            </router-link> -->
                             <v-img :src="movie.img_url" alt="" class="movie-image"></v-img>
                             <div style="min-width: 0">              
                                 <v-card-title class="subtitle-2">
@@ -29,7 +24,7 @@
                     <MovieCard v-if="selectedMovie" :movie="selectedMovie" @close="closeOverlay" @movieRemoved="onMovieRemoved"/>
                     <v-card-actions>
                         <v-btn icon @click="showOverlay = false">
-                            <v-icon>mdi-close</v-icon>
+                            <v-icon class="close-overlay-icon">mdi-close</v-icon>
                         </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -47,7 +42,7 @@ import MovieService from '../services/MovieService.js';
 export default {
     data() {
         return {
-            wantToWatchMovies: [],
+            wantToWatchMovies: {},
             showOverlay: false,
             selectedMovie: null,
         };
@@ -66,6 +61,9 @@ export default {
                 this.wantToWatchMovies = response.data;
                 }
             })
+            .catch(error => {
+                console.error("Error fetching wantToWatchMovies:", error);
+            });
         },
         showMovieDetails(movie) {
             this.selectedMovie = movie;
@@ -78,13 +76,17 @@ export default {
         onMovieRemoved() {
             this.showOverlay = false;
             this.fetchWantToWatchMovies();
-        }
+        },
     }
 }
 
 </script>
 
 <style scoped>
+
+.main{
+    margin: 5% auto 5% auto;
+}
 
 .v-card {
   border-bottom-left-radius: 2%;
@@ -129,6 +131,24 @@ export default {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.close-overlay-icon {
+
+    background-color: white;
+    border-radius: 100%;
+}
+
+@media (max-width: 800px) {
+    .movie-card-overlay {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 </style>

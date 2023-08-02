@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="main">
+    <h1 class="mt-10 mb-0 ml-10 mr-10 grey--text">Which genres do you want to see?</h1>
     <div class="selector-box">
       <preferences-selectors :genre-preferences.sync="genrePreferences" @checkboxToggled="onCheckBoxToggled"/>
     </div>
@@ -10,7 +11,7 @@
 import UserService from '../services/UserService.js'
 import PreferencesSelectors from '../components/PreferencesSelectors.vue'
 export default {
-    name: 'genres',
+    name: 'Genres',
     components: {
         PreferencesSelectors
     },
@@ -24,7 +25,8 @@ export default {
             const response = await UserService.getUserPreferences(1);
             this.genrePreferences = response.data;
         } catch (error) {
-            ('Error fetching genre preferences:', error);
+                // eslint-disable-next-line no-console
+                console.error('Error fetching genre preferences:', error);
         }
     },
     methods: {
@@ -58,10 +60,12 @@ export default {
                 };
                 UserService.updatePreferences(requestBody)
                     .then((response) => {
-                        (response.data);
+                            // eslint-disable-next-line no-console
+                            console.log(response.data);
                     })
                     .catch((error) => {
-                        ('Error updating genre preferences:', error);
+                        // eslint-disable-next-line no-console
+                        console.error('Error updating genre preferences:', error)
                 });
             } else {
                 const requestBody = {
@@ -78,10 +82,12 @@ export default {
                 };
                 UserService.updatePreferences(requestBody)
                     .then((response) => {
-                        (response.data);
+                            // eslint-disable-next-line no-console
+                            console.log(response.data);
                     })
                     .catch((error) => {
-                        ('Error updating genre preferences:', error);
+                            // eslint-disable-next-line no-console
+                            console.error('Error updating genre preferences:', error);
                     });
             }
         },
@@ -100,19 +106,23 @@ export default {
 
 <style scoped>
 
-.selector-box{
+.main{
+    margin: 0 auto;
+    padding: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    
+    min-height: 1000px;
 }
 
-.buttons {
+.selector-box{
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    gap: 50px;
-    margin: 1% auto 2% auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5% auto 0 auto;   
 }
 
 </style>
